@@ -5,6 +5,18 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
+int countPipes(Ops* operations)
+{
+  int i;
+  int cnt = 0;
+
+  for (i = 0; operations[i] != NONE; i++) {
+    if (operations[i] == PIPE) cnt++;
+  }
+
+  return cnt;
+}
+
 
 char* readLine(void)
 {
