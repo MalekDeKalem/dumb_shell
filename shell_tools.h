@@ -18,6 +18,11 @@ typedef enum {
   NONE
 } Ops;
 
+int pipeHandler(char** args)
+{
+
+}
+
 
 int dshCd(char** args)
 {
