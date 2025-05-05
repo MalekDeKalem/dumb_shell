@@ -20,6 +20,10 @@ typedef enum {
 
 int pipeHandler(char** args)
 {
+  int pipefd[2];
+  pipe(pipefd);
+
+  pid_t pid2 = fork();
 
 }
 
