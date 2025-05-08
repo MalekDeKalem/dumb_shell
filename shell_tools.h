@@ -18,14 +18,30 @@ typedef enum {
   NONE
 } Ops;
 
-int pipeHandler(char** args)
+
+int countPipes(Ops* operations)
 {
-  int pipefd[2];
+  int i;
+  int cnt = 0;
+
+  for (i = 0; operations[i] != NONE; i++) {
+    if (operations[i] == PIPE) cnt++;
+  }
+
+  return cnt;
+}
+
+
+int pipeHandler(Ops* operations)
+{
+  int pipes = countPipes(operations);
+  int pipefd[pipes];
   pipe(pipefd);
 
   pid_t pid2 = fork();
 
 }
+
 
 
 int dshCd(char** args)
