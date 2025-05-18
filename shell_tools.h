@@ -13,6 +13,8 @@ typedef enum {
   CD,
   HELP,
   EXIT,
+  PWD,
+  ECHO,
   PIPE,
   SIZE,
   NONE
@@ -34,11 +36,16 @@ int countPipes(Ops* operations)
 
 int pipeHandler(Ops* operations)
 {
+  int i;
   int pipes = countPipes(operations);
   int pipefd[pipes];
   pipe(pipefd);
 
-  pid_t pid2 = fork();
+
+  for (i = 0; i < pipes; i++) {
+    pid_t pid;
+    pid = fork();
+  }
 
 }
 
@@ -52,6 +59,18 @@ int dshCd(char** args)
     if (chdir(args[1]) != 0) {
       perror("dsh");
     }
+  }
+
+  return 1;
+}
+
+int dshEcho(char** args)
+{
+  if (args[1] == NULL) {
+    fprintf(stderr, "Failed to echo\n");
+  } else {
+    printf(args[1]);
+    printf("\n");
   }
 
   return 1;

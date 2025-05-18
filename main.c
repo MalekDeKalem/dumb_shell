@@ -99,6 +99,8 @@ Ops* parseTokens(char** tokens)
       operations[ptr] = HELP;
     } else if (strcmp(tokens[i], "|") == 0) {
       operations[ptr] = PIPE;
+    } else if (strcmp(tokens[i], "echo") == 0) {
+      operations[ptr] = ECHO;
     }
 
     ptr++;
@@ -146,6 +148,8 @@ int dshExecute(Ops* operations, char** args)
         return dshHelp(args);
       case EXIT:
         return dshExit(args);
+      case ECHO:
+        return dshEcho(args);
       default:
         break;
 
